@@ -25,7 +25,7 @@ sub flow {
   }
 
   my $code = $self->_flow($uris);
-  my $flow_res = LWP::FlowCheck::Response->new(
+  my $flow_res = LWP::Flow::Response->new(
     uris=>$uris,
     code=>$code,
   );
