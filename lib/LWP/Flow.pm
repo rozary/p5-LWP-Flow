@@ -1,8 +1,8 @@
 package LWP::Flow;
 
 use strict;
-use utf8;
 use warnings;
+use utf8;
 use parent qw(LWP::UserAgent);
 use Class::Accessor::Lite;
 use URI::Find;
@@ -101,3 +101,31 @@ sub _is_status {
 }
 
 1;
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+LWP::Flow - It's new $module
+
+=head1 SYNOPSIS
+
+    use LWP::Flow;
+
+=head1 DESCRIPTION
+
+LWP::Flow is ...
+
+=head1 LICENSE
+
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+Synsuke Fujishiro <i47.rozary at gmail.com>
+
+=cut
