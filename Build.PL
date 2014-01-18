@@ -3,8 +3,6 @@
 # DO NOT EDIT DIRECTLY.
 # =========================================================================
 
-use 5.008_001;
-
 use strict;
 use warnings;
 use utf8;

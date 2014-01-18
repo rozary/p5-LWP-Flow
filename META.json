@@ -1,7 +1,7 @@
 {
    "abstract" : "It's new $module",
    "author" : [
-      "fujishiro <i47.rozary@gmail.com>"
+      "fujishiro <i47.rozary at gmail.com>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v0.11.0, CPAN::Meta::Converter version 2.132661",
@@ -41,11 +41,6 @@
             "Test::Spellunker" : "v0.2.7"
          }
       },
-      "runtime" : {
-         "requires" : {
-            "perl" : "5.008005"
-         }
-      },
       "test" : {
          "requires" : {
             "Test::More" : "0.98"
@@ -53,5 +48,5 @@
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "version" : "0.02"
 }
