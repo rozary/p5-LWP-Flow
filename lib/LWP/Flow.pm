@@ -68,7 +68,7 @@ use Class::Accessor::Lite;
 use URI::Find;
 our $VERSION = '0.02';
 
-Class::Accessor::Lite->mk_accessors(qw/uris code/);
+Class::Accessor::Lite->mk_new_and_accessors(qw/uris code/);
 
 sub is_status{
   my $self = shift;
