@@ -1,17 +1,14 @@
 package LWP::Flow;
 
 use strict;
+use utf8;
 use warnings;
 use parent qw(LWP::UserAgent);
-use utf8;
+use Class::Accessor::Lite;
 use URI::Find;
-use Mouse;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
-has "user" => (is=>"rw");
-has "pass" => (is=>"rw");
-has "referer" => (is=>"rw");
-has "except_uri" => (is=>"rw");
+Class::Accessor::Lite->mk_accessors(qw/except_uri/);
 
 sub flow {
   my $self = shift;
@@ -67,28 +64,40 @@ package LWP::Flow::Response;
 use strict;
 use warnings;
 use utf8;
+use Class::Accessor::Lite;
 use URI::Find;
-use Mouse;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
-has "uris" => (is=>"rw",required=>1);
-has "code" => (is=>"rw",required=>1);
+Class::Accessor::Lite->mk_accessors(qw/uris code/);
 
 sub is_status{
   my $self = shift;
 
-  my $code = $self->code;
-  my $rtn = grep {$_ !~ /^(1|2)\d\d/} values %$code;
-  return $rtn ? 0 : 1;
+  return $self->_is_status(sub {
+      my $code = shift;
+      return grep {$_ !~ /^(1|2)\d\d/} values %$code;
+    });
 }
 
 #302系も許可する
 sub is_status_loose {
   my $self = shift;
 
-  my $code = $self->code;
-  my $rtn = grep {$_ !~ /^(?:1|2|3)\d\d/} values %$code;
-  return $rtn ? 0 : 1;
+  return $self->_is_status(sub {
+      my $code = shift;
+      return grep {$_ !~ /^(1|2|3)\d\d/} values %$code;
+    });
+}
+
+sub _is_status {
+  my $self = shift;
+  my $CODE = shift;
+
+  my $rtn = 0;
+  return $rtn if (scalar keys %{$self->code} == 0);
+
+  $rtn = $CODE->($self->code);
+  return $rtn == 0 ? 1 : 0;
 }
 
 1;
